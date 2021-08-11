@@ -1,0 +1,65 @@
+
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+    <div class="navbar-brand">
+        TechJob</div>
+        <ul class="navbar-nav" >
+            <li><a  (click)="about()" class="nav-link">About</a></li>
+           
+        </ul> 
+     
+  
+    <ul class="navbar-nav navbar-collapse justify-content-end">
+            <li><a *ngIf="!this.email" href="/login" class="nav-link">Login</a></li>
+            <li><a *ngIf="!this.email" href="/register" class="nav-link">SignUp</a></li>
+            <li><a *ngIf="this.email" href="/logout" class="nav-link">Logout</a></li>
+    </ul>
+  </nav>
+  
+  
+
+
+<h1>List of Jobs</h1>
+
+<div class="alert alert-success" *ngIf='message'>{{message}}</div>
+<div class="container">
+<table class="table">
+    
+    <thead>
+        <tr>
+            <th>Job ID</th>
+            <th>Name</th>
+            <th>Address</th>
+            <th>Issue</th>
+            <th>Status</th>
+            <th >Shortest Route</th> 
+           <th>Add Details</th>
+           <th >Send mail</th> 
+            <!-- <th >Delete</th> -->
+            
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let job of jobs">
+          
+            <td>{{job.id}}</td>
+            <td>{{job.jobName}}</td>
+            <td>{{job.address}}</td>
+            <td>{{job.issue}}</td>
+            <td *ngIf="!job.status">Not Completed</td>
+            <td *ngIf="job.status">Completed</td>
+            <td  ><button (click)="sRoute()" class="btn btn-dark">Directions</button></td>
+            <td  ><button (click)="addDetails(job.id)" class="btn btn-dark">add</button></td>
+            
+            <td  ><button (click)="sendMail()" class="btn btn-dark">send</button></td>
+            <!-- <td ><button (click)="deleteJob(job.id)" class="btn btn-dark">Delete</button></td> -->
+        
+           
+
+            
+        </tr>
+    </tbody>
+</table>
+
+
+
+

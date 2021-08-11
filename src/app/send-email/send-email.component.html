@@ -1,0 +1,47 @@
+
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+    <div class="navbar-brand">
+        TechJob</div>
+    
+        <ul class="navbar-nav" >
+            <li><a  (click)="about()" class="nav-link">About</a></li>
+            
+        </ul>      
+  
+    <ul class="navbar-nav navbar-collapse justify-content-end">
+            <li><a *ngIf="!this.email" href="/login" class="nav-link">Login</a></li>
+            <li><a *ngIf="!this.email" href="/register" class="nav-link">SignUp</a></li>
+            <li><a *ngIf="this.email" href="/logout" class="nav-link">Logout</a></li>
+    </ul>
+  </nav>
+  
+  <br>
+  <br>
+  <br>
+  <br>
+
+  <div class="container">
+    <div class="alert alert-warning" *ngIf="detailsForm.dirty&&detailsForm.invalid">Enter valid values</div>
+    <form (ngSubmit)="!detailsForm.invalid&&sendEmail()" #detailsForm="ngForm">
+    <!-- <fieldset class="form-group">
+        <label>Sender Address</label>
+            <input type="text" [(ngModel)]="details.senderId" class="form-control" name="senderId" required="required">
+        </fieldset> -->
+        <fieldset class="form-group">
+            <label>Receiver <Address></Address></label>
+                <input type="text" [(ngModel)]="details.recieverId" class="form-control" name="receiverId" required="required" >
+            </fieldset>
+        <fieldset class="form-group">
+        <label>Subject</label>
+            <textarea name="subject"  rows="1" cols="5" [(ngModel)]="details.subject" class="form-control" required="required" ></textarea>
+        </fieldset>
+        <fieldset class="form-group">
+          <label>Information</label>
+          <!-- <textarea name="message" rows="10" cols="30">The cat was playing in the garden.</textarea> -->
+              <textarea name="info" rows="10" cols="30" [(ngModel)]="details.info" class="form-control"  required="required" ></textarea>
+          </fieldset>
+        <button  type="submit" class="btn btn-dark">send</button>
+</form>
+        </div>
+  
+

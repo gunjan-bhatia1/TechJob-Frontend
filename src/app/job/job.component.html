@@ -1,0 +1,78 @@
+
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+    <div class="navbar-brand">
+        TechJob</div>
+    
+     <ul class="navbar-nav" >
+        <li><a  (click)="about()" class="nav-link">About</a></li>
+        <li><a *ngIf="this.email" (click)="goToJobs()" class="nav-link">Jobs</a></li>
+        <li><a *ngIf="this.email&&!c" (click)="gotoTechnicianPage()" class="nav-link">Technicians</a></li>
+      
+    </ul> 
+  
+    <ul class="navbar-nav navbar-collapse justify-content-end">
+            <li><a *ngIf="!this.email" href="/login" class="nav-link">Login</a></li>
+            <li><a *ngIf="!this.email" href="/register" class="nav-link">SignUp</a></li>
+            <li><a *ngIf="this.email" href="/logout" class="nav-link">Logout</a></li>
+    </ul>
+  </nav>
+  
+  
+
+
+<h1>List of Jobs</h1>
+
+<div class="alert alert-success" *ngIf='message'>{{message}}</div>
+<div class="container">
+<table class="table">
+    
+    <thead>
+        <tr>
+            <th>Job ID</th>
+            <th>Name</th>
+            <th>Locality</th>
+            <th>Address</th>
+            <th>Issue</th>
+            <th >Status</th>
+            <th >View Image</th>
+            <th>Duration</th>
+            <th >Show Details</th>
+            <th >Technician Assigned</th>
+            <th >Update</th>
+            <th >Delete</th>
+            
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let job of jobs">
+          
+            <td>{{job.id}}</td>
+            <td>{{job.jobName}}</td>
+            <th>{{job.locality}}</th>
+            <td>{{job.address}}</td>
+            <td>{{job.issue}}</td>
+            <td *ngIf="!job.status">Not Completed</td>
+            <td *ngIf="job.status">Completed</td>
+            <td *ngIf="!job.status">Not Available</td>
+            <td *ngIf="job.status" ><button (click)="view(job.image)" class="btn btn-dark">click</button></td>
+            <td *ngIf="!job.status">Not Available</td>
+            <td *ngIf="job.status">{{job.Details}}</td>
+            <td *ngIf="!job.status">Not Available</td>
+            <td *ngIf="job.status"><button (click)="show(job.id)" class="btn btn-dark">click</button></td>
+            <td >{{job.technicianDetails}}</td>
+            
+            <td  ><button (click)="updateJob(job.id)" class="btn btn-dark">Update</button></td>
+            <td ><button (click)="deleteJob(job.id)" class="btn btn-dark">Delete</button></td>
+           
+
+            
+        </tr>
+    </tbody>
+</table>
+<br>
+<div *ngIf="c">Note: *After completion kindly fill the time taken in entire process*</div>
+
+<br>
+<div  class="row">
+    <button (click)="addJob()" class="btn btn-dark">Add</button>
+  </div>

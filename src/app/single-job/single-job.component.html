@@ -1,0 +1,64 @@
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+    <div class="navbar-brand">
+        TechJob</div>
+    
+     <ul class="navbar-nav" >
+            <li><a  (click)="about()" class="nav-link">About</a></li>
+        <li><a *ngIf="this.email" (click)="goToJobs()" class="nav-link">Jobs</a></li>
+        <li><a *ngIf="this.email&&!c" (click)="gotoTechnicianPage()" class="nav-link">Technicians</a></li>
+      
+    </ul> 
+  
+    <ul class="navbar-nav navbar-collapse justify-content-end">
+            <li><a *ngIf="!this.email" href="/login" class="nav-link">Login</a></li>
+            <li><a *ngIf="!this.email" href="/register" class="nav-link">SignUp</a></li>
+            <li><a *ngIf="this.email" href="/logout" class="nav-link">Logout</a></li>
+    </ul>
+  </nav>
+<h1>Job</h1>
+
+<div class="container">
+    <div class="alert alert-warning" *ngIf="jobForm.dirty&&jobForm.invalid">Enter valid values</div>
+    <form (ngSubmit)="!jobForm.invalid&&saveJob()" #jobForm="ngForm">
+    <fieldset class="form-group">
+        <label>Job Name</label>
+            <input type="text" [(ngModel)]="singleJob.jobName" class="form-control" name="jobName" required="required">
+        </fieldset>
+        <fieldset class="form-group">
+            <label>Locality</label>
+                <input type="text" [(ngModel)]="singleJob.locality" class="form-control" name="locality" placeholder="Enter District " required="required" >
+            </fieldset>
+        <fieldset class="form-group">
+            <label>Address</label>
+                <input type="text" [(ngModel)]="singleJob.address" class="form-control" name="address" placeholder="Complete address and Contact details " required="required" >
+            </fieldset>
+        <fieldset class="form-group">
+        <label>Issue</label>
+            <input type="text" [(ngModel)]="singleJob.issue" class="form-control" name="issue" placeholder="Problem " required="required" >
+        </fieldset>
+        <fieldset *ngIf="singleJob.status" class="form-group">
+            <label>Duration</label>
+                <input type="text" [(ngModel)]="singleJob.duration" class="form-control" name="duration" placeholder="Enter time taken " required="required" >
+            </fieldset>
+       
+        <!--  <div class="form-group">
+       <fieldset class="form-group">
+            <label>Assign Technician</label>
+                <input type="text" [(ngModel)]="department" class="form-control" name="techniciandDetails" required="required" >
+            </fieldset>
+          </div> -->
+          <div *ngIf="!c" class="form-group">
+            <fieldset *ngIf="!c" class="form-group">
+                <label>Assign Technician</label>
+                <select [(ngModel)]="this.singleTechie" name="singleTechie"> 
+                  <option  *ngFor="let t of technicians"  [ngValue]="t">{{t.name}}</option> 
+              </select> 
+               
+ </fieldset>
+              </div>
+        
+<button  type="submit" class="btn btn-dark">Save</button>
+</form>
+        </div>
+
+        
